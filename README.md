@@ -5,8 +5,8 @@ This is a toy project and should not be used for production use. It is not suppo
 
 ## Requirements
 
- * 2 WAN networks
- * 1 local network
+ * 2 WAN networks (that you can attach to statically)
+ * 1 local network (that you will run the dns / dhcp for)
  * Debian (tested on PopOS!) based OS
 
 ## Features
@@ -26,8 +26,8 @@ This is a toy project and should not be used for production use. It is not suppo
     3	wan1
     ```
 
-Ensure the ID and name line up with the config file (see below)
+    Ensure the id and table name line up with what you provide in the configuration file (next step)
 
- * Copy `/opt/router/router.config.sample` to `/etc/router/config` and update accordingly
+ * Copy `/opt/router/config.sample` to `/etc/router/config` and update accordingly
  * Run `/opt/router/install.sh`
  * Reboot
