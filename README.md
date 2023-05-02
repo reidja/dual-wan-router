@@ -3,6 +3,8 @@ This is a simple Dual-WAN router with basic failover. It will not load balance c
 
 This is a toy project and should not be used for production use. It is not supported in anyway.
 
+**It also works under the assumption that both the WAN's have their own firewalls in place. Use at your own risk!**
+
 ## Requirements
 
  * 2 WAN networks (that you can attach to statically)
