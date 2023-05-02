@@ -1,0 +1,12 @@
+[Unit]
+Description=Initialize the Router
+Wants=network-online.target
+After=network.target network-online.target
+
+[Service]
+ExecStart=/opt/router/bin/router-initialize.sh
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

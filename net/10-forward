@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+source /etc/router/config
+
+set -x
+
+## $LAN_01
+# Always allow forwarding from $LAN_0
+iptables -A FORWARD -i $LAN_0 -j ACCEPT
+
+## $WAN_0
+
+# Allow all connections from $LAN_0 to be forwarded to $WAN_0
+iptables -A FORWARD -i $LAN_0 -o $WAN_0 -j ACCEPT
+# Allow existing connections from $WAN_0 to be forwarded to $LAN_0
+iptables -A FORWARD -i $WAN_0 -o $LAN_0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+## $WAN_1
+
+# Allow all connections from $LAN_0 to be forwarded to $WAN_1
+iptables -A FORWARD -i $LAN_0 -o $WAN_1 -j ACCEPT
+# Allow open connections from $WAN_1 to be forwarded to $LAN_0
+iptables -A FORWARD -i $WAN_1 -o $LAN_0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+## DOCKER
+
+# Allow $LAN_0 to be forwarded to $DOCKER_0
+iptables -A FORWARD -i $LAN_0 -o $DOCKER_0 -j ACCEPT
+# Allow $DOCKER_0 to be forwarded to $LAN_0, $WAN_0, $WAN_1
+iptables -A FORWARD -i $DOCKER_0 -o $LAN_0 -j ACCEPT
+iptables -A FORWARD -i $DOCKER_0 -o $WAN_0 -j ACCEPT
+iptables -A FORWARD -i $DOCKER_0 -o $WAN_1 -j ACCEPT
+

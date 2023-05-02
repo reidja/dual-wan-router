@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+source /etc/router/config
+
+set -x
+
+## DOCKER
+
+# Route traffic to $DOCKER_SUBNET via $DOCKER_0 in both WAN tables
+ip route add $DOCKER_0_NETWORK dev $DOCKER_0 table $WAN_0_TABLE
+ip route add $DOCKER_0_NETWORK dev $DOCKER_0 table $WAN_1_TABLE

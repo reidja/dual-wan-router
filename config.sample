@@ -1,0 +1,79 @@
+## ROOT
+
+ROOT=/opt/router
+
+## DNS
+
+# Setup the upstream DNS servers
+export DNS_0="8.8.8.8"
+export DNS_1="8.8.4.4"
+
+##
+## NETWORK
+##
+
+export HOSTNAME="router"
+export DOMAIN="local"
+export FQDN="$HOSTNAME.$DOMAIN"
+
+# WAN_0 Configuration
+export WAN_0="wan0"
+export WAN_0_IP="10.0.0.5"
+export WAN_0_GATEWAY="10.0.0.1"
+export WAN_0_NETWORK="10.0.0.0/24"
+export WAN_0_MAC="30:de:4b:32:de:17"
+export WAN_0_TABLE="wan0"
+export WAN_0_TABLE_ID="2"
+
+# WAN_1 Configuration
+export WAN_1="wan1"
+export WAN_1_IP="192.168.2.5"
+export WAN_1_GATEWAY="192.168.2.1"
+export WAN_1_NETWORK="192.168.2.0/24"
+export WAN_1_MAC="ac:15:a2:c8:49:ff"
+export WAN_1_TABLE="wan1"
+export WAN_1_TABLE_ID="3"
+
+# LAN_0 Configuration
+export LAN_0="lan0"
+export LAN_0_NETWORK="192.168.0.1/24"
+export LAN_0_IP="192.168.0.1"
+export LAN_0_MAC="88:d7:f6:c4:dc:58"
+
+##
+## DHCP
+##
+export DHCP_START="192.168.0.20"
+export DHCP_END="192.168.0.240"
+
+# DOCKER_0 Configurtion
+export DOCKER_0="docker0"
+export DOCKER_0_NETWORK="172.17.0.0/16"
+
+##
+## MONITORING
+##
+
+# Setup the IPs used on each WAN for checking network status
+# Note: These will be hardcoded to only pass through each WAN and should not be used otherwise
+export WAN_0_VERIFY="208.67.222.222"
+export WAN_1_VERIFY="208.67.220.220"
+
+# Number of seconds between network status checks
+export MONITOR_INTERVAL=30
+
+# Number of ping attempts per network status check
+export PING_ATTEMPTS=4
+
+##
+## Dnsmasq
+##
+
+# URL to the Dnsmasq black list file (ad blocking)
+DNSMASQ_BLACKLIST_URL="https://raw.githubusercontent.com/notracking/hosts-blocklists/master/dnsmasq/dnsmasq.blacklist.txt"
+
+##
+## Storage
+##
+
+DISK_0=/dev/nvme

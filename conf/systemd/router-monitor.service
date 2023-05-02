@@ -1,0 +1,11 @@
+[Unit]
+Description=Monitor the WANs
+After=router.service
+
+[Service]
+ExecStart=/opt/router/bin/router-monitor.sh
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

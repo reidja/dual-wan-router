@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+source /etc/router/config
+
+set -x 
+iptables -t nat -A POSTROUTING -o $WAN_0 -j MASQUERADE --random
+iptables -t nat -A POSTROUTING -o $WAN_1 -j MASQUERADE --random
+iptables -t nat -A POSTROUTING -o $DOCKER_0 -j MASQUERADE
+

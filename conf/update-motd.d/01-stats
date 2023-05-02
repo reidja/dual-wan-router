@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+source /etc/router/config
+source $ROOT/bin/helpers.sh
+
+WAN=$(cat /etc/router/current)
+NETWORK=$(echo "$(get-name $WAN)" | python3 -c 'import sys; print(sys.stdin.read().capitalize())')
+
+echo ""
+printf "%-12s %s\n" "Hostname:" "$FQDN"
+printf "%-12s %s\n" "Network:" "$NETWORK ($WAN)"
+printf "%-12s %s\n" "Private IP:" "$LAN_0_IP"
+printf "%-12s %s\n" "Public IP:" "$(dig +short txt ch whoami.cloudflare @1.0.0.1 | sed s/\"//g)"
+echo ""
+printf "%-12s %s\n" "Date:" "$(date +'%Y-%m-%d %H:%M:%S %Z')"
+printf "%-12s %s\n" "Uptime:" "$(uptime -p)"
+echo ""
+printf "%-12s %s\n" "CPU: " "$(iostat | grep -A 1 avg | tail -n 1 | awk '{print $3*100"%" }')"
+printf "%-12s %s %s\n" "Disk:" "$(df -h | grep $DISK_0 | awk '{print $3" of "$2" ("$5")"}')" "($(iostat | grep nvme | awk '{print $2}') tps)"
+printf "%-12s %s\n" "Memory:" "$(free -mh | grep Mem | awk '{print $3" of "$2" ("$4" free)"}')"
+echo ""

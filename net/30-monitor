@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+source /etc/router/config
+
+set -x 
+
+ip rule del to $WAN_0_VERIFY
+ip rule add to $WAN_0_VERIFY lookup $WAN_0_TABLE
+ip rule del to $WAN_1_VERIFY
+ip rule add to $WAN_1_VERIFY lookup $WAN_1_TABLE
