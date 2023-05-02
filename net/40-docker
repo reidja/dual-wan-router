@@ -2,5 +2,7 @@
 
 source /etc/router/config
 
+set -x
+
 ip rule del from $LAN_0_NETWORK to $DOCKER_0_NETWORK iif $LAN_0
 ip rule add from $LAN_0_NETWORK to $DOCKER_0_NETWORK iif $LAN_0
