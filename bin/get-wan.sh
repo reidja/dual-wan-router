@@ -2,8 +2,8 @@
 
 source /etc/router/config
 
-if $ROOT/bin/ping.sh wan0 &> /dev/null; then
-    echo "wan0"
-else
+if $ROOT/bin/ping.sh wan1 &> /dev/null; then
     echo "wan1"
+else
+    echo "wan0"
 fi
