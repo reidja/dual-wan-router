@@ -11,14 +11,14 @@ network:
               - $WAN_0_IP/24
             set-name: $WAN_0
             routes:
-            - to: default
+            - to: 0.0.0.0/0
               via: $WAN_0_GATEWAY
               table: $WAN_0_TABLE_ID
         $WAN_1:
             dhcp4: false
             dhcp6: false
             routes:
-            - to: default
+            - to: 0.0.0.0/0
               via: $WAN_1_GATEWAY
               table: $WAN_1_TABLE_ID
             match:
